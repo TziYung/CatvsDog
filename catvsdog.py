@@ -37,13 +37,13 @@ y=y[100:]
 modelname='catvsdog'
 a=0
 model=keras.Sequential([
-    keras.layers.Conv2D(64,(10,10),input_shape=x.shape[1:]),
-    keras.layers.Conv2D(32,(10,10)),
+    keras.layers.Conv2D(64,(11,11),input_shape=x.shape[1:]),
+    keras.layers.Conv2D(32,(11,11)),
     keras.layers.MaxPooling2D(pool_size=(6,6)),
-    keras.layers.Conv2D(32,(10,10)),
-    keras.layers.Conv2D(32,(10,10)),
+    keras.layers.Conv2D(32,(11,11)),
+    keras.layers.Conv2D(32,(11,11)),
     keras.layers.MaxPooling2D(pool_size=(3,3)),
-    keras.layers.Conv2D(32,(4,4)),
+    keras.layers.Conv2D(32,(5,5)),
     keras.layers.Flatten(),
     keras.layers.Dense(256,activation='relu'),
     keras.layers.Dense(128,activation='relu'),
