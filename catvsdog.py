@@ -37,16 +37,59 @@ y=y[100:]
 modelname='catvsdog'
 a=0
 model=keras.Sequential([
-    keras.layers.Conv2D(64,(5,5),input_shape=x.shape[1:]),
-    keras.layers.Conv2D(32,(5,5)),
-    keras.layers.MaxPooling2D(pool_size=(6,6)),
-    keras.layers.Conv2D(32,(5,5)),
-    keras.layers.Conv2D(32,(5,5)),
-    keras.layers.MaxPooling2D(pool_size=(3,3)),
-    keras.layers.Conv2D(32,(5,5)),
+
+    
+    
+    keras.layers.Conv2D(16,(3,3),use_bias=False,input_shape=(x.shape[1:])),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation('relu'),
+    
+    keras.layers.Conv2D(16,(3,3),use_bias=False),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation('relu'),
+    
+    keras.layers.MaxPooling2D(2,2),
+                                    
+    keras.layers.Conv2D(32,(3,3),use_bias=False),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation('relu'),
+                                    
+    keras.layers.Conv2D(32,(3,3),use_bias=False),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation('relu'),
+    
+    keras.layers.MaxPooling2D(2,2),
+                                    
+    keras.layers.Conv2D(64,(3,3),use_bias=False),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation('relu'),
+                                    
+    keras.layers.Conv2D(64,(3,3),use_bias=False),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation('relu'),
+    
+    keras.layers.MaxPooling2D(2,2),
+    
+    keras.layers.Conv2D(128,(3,3),use_bias=False),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation('relu'),
+                                    
+    keras.layers.Conv2D(128,(3,3),use_bias=False),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation('relu'),
+    
+    keras.layers.Conv2D(128,(3,3),use_bias=False),
+    keras.layers.BatchNormalization(),
+    keras.layers.Activation('relu'),
+    
+    keras.layers.MaxPooling2D(2,2),                       
+                                    
     keras.layers.Flatten(),
-    keras.layers.Dense(256,activation='relu'),
-    keras.layers.Dense(128,activation='relu'),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(2048,activation='relu'),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(2048,activation='relu'),
+    keras.layers.Dropout(0.5),
     keras.layers.Dense(1,activation='sigmoid')
     ])
 model.compile(optimizer='adam',loss='binary_crossentropy',metrics=['accuracy'])
